@@ -1,0 +1,42 @@
+<center>
+<h1>Diary</h1>
+
+<form action="/home/create" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    제목 : <input type="text" name="post_title"><br><br>
+    내용 : <textarea name="post_content"></textarea><br><br><br>
+
+<button type="submit" class="btn btn-success" >제출</button>
+<button type="button" class="btn btn-success" onClick="history.back()">되돌아가기</button>
+</form>
+
+
+  <h1>List</h1> </center>
+  <table align="center">
+      <tr>
+       <th>제목</th>
+       <th>내용</th>
+       <th>Delete</th>
+       <th>Edit</th>
+       </tr>
+      <tr>
+       <%@posts.each do |x| %>
+        <td><%=x.title%></td>                        
+        <td><%=x.content%></td>
+        <td><a href="/home/delete/<%=x.id%>"> Delete </a></td>
+        <td><a href = "/home/edit/<%=x.id%>"> Edit </a></td>
+      </tr>
+      <%end%>
+  </table>
+
+<style>
+
+  table {
+    width: 1200px;
+    border: 3px solid #418e42;
+  }
+  th, td {
+    border: 3px solid #418e42;
+  }
+</style>
